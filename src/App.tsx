@@ -1,5 +1,7 @@
+import Body from "./components/ui/body";
+
 function App() {
-  return <h1>Hello world!</h1>;
+  return <Body />;
 }
 
 export default App;
