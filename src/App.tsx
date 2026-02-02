@@ -1,7 +1,13 @@
-import Body from "./components/ui/body";
+import Login from "./components/Login";
+import Body from "./components/ui/Body";
 
 function App() {
-  return <Body />;
+  return (
+    <div className="flex flex-row">
+      <Body />
+      <Login />
+    </div>
+  );
 }
 
 export default App;
