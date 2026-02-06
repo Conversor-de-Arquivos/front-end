@@ -64,7 +64,7 @@ export default function Login() {
         </div>
         <div className="flex flex-col gap-1 w-100">
           <label className="font-semibold">Senha</label>
-          {/* TODO: Toggle Password*/}
+          {/* TODO: Toggle Password Icon*/}
           <input
             onChange={(event) => handleLoginFields(event)}
             name="password"
@@ -80,7 +80,7 @@ export default function Login() {
           >
             Entrar
           </button>
-          {/* TODO: Sign Up Page */}
+          {/* TODO: Sign Up Page Redirect */}
           <button className="font-semibold text-black rounded-lg border border-zinc-400 h-10 cursor-pointer">
             Criar conta
           </button>
