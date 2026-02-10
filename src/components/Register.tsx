@@ -1,7 +1,15 @@
-import { useState, type ChangeEvent } from "react";
+import { useContext, useState, type ChangeEvent } from "react";
+import { SignContext } from "../store/sign-context";
 
 export default function Register() {
-  const [registerCredentials, setRegisterCredentials] = useState({
+  const { switchScreen } = useContext(SignContext);
+
+  const [registerCredentials, setRegisterCredentials] = useState<{
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>({
     name: "",
     email: "",
     password: "",
@@ -75,8 +83,11 @@ export default function Register() {
           </button>
           <p className="text-center font-serif font-extralight">
             Já possui uma conta? Faça login clicando{" "}
-            {/* TODO: Login Page Redirect */}
-            <a className="font-extrabold underline" href="#">
+            <a
+              onClick={switchScreen}
+              className="font-extrabold underline"
+              href="#"
+            >
               aqui!
             </a>
           </p>

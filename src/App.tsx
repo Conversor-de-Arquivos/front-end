@@ -1,13 +1,14 @@
-import Login from "./components/Login";
+import CurrentScreen from "./components/CurrentScreen";
 import Body from "./components/ui/Body";
-import Register from "./components/Register";
+import SignContextProvider from "./store/sign-context";
 
 function App() {
   return (
     <div className="flex flex-row">
       <Body />
-      {/* <Login /> */}
-      <Register />
+      <SignContextProvider>
+        <CurrentScreen />
+      </SignContextProvider>
     </div>
   );
 }

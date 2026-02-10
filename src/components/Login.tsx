@@ -1,8 +1,14 @@
-import { useState, type ChangeEvent } from "react";
+import { useContext, useState, type ChangeEvent } from "react";
 import user from "../test/userMock";
+import { SignContext } from "../store/sign-context";
 
 export default function Login() {
-  const [loginCredentials, setLoginCredentials] = useState({
+  const { switchScreen } = useContext(SignContext);
+
+  const [loginCredentials, setLoginCredentials] = useState<{
+    email: string;
+    password: string;
+  }>({
     email: "",
     password: "",
   });
@@ -29,7 +35,7 @@ export default function Login() {
       );
   }
 
-  function handleSignIn(event: any) {
+  function handleSignIn(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     setSignIn((prev) => !prev);
   }
@@ -80,8 +86,10 @@ export default function Login() {
           >
             Entrar
           </button>
-          {/* TODO: Sign Up Page Redirect */}
-          <button className="font-semibold text-black rounded-lg border border-zinc-400 h-10 cursor-pointer">
+          <button
+            onClick={switchScreen}
+            className="font-semibold text-black rounded-lg border border-zinc-400 h-10 cursor-pointer"
+          >
             Criar conta
           </button>
           {signIn &&
