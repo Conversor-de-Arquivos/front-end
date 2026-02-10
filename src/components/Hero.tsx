@@ -1,6 +1,6 @@
 import { FileText, ArrowLeftRight } from "lucide-react";
 
-export default function Body() {
+export default function Hero() {
   return (
     <div className="h-screen w-[50vw] flex items-center justify-center bg-linear-to-tr from-stone-700 to-stone-900">
       <div className="flex flex-col items-center gap-10 text-white">

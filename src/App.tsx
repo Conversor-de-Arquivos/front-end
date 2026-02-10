@@ -1,11 +1,11 @@
 import CurrentScreen from "./components/CurrentScreen";
-import Body from "./components/ui/Body";
+import Hero from "./components/Hero";
 import SignContextProvider from "./store/sign-context";
 
 function App() {
   return (
     <div className="flex flex-row">
-      <Body />
+      <Hero />
       <SignContextProvider>
         <CurrentScreen />
       </SignContextProvider>
