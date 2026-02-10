@@ -12,32 +12,25 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const [signIn, setSignIn] = useState(false);
+  type LoginStatus = "idle" | "error" | "success";
+  const [status, setStatus] = useState<LoginStatus>("idle");
 
   function mockTest(email: string, password: string) {
-    if (
-      !email ||
-      !password ||
-      email !== user.email ||
-      password !== user.password
-    )
-      return (
-        <p className="text-center text-red-500 text-lg font-semibold">
-          Invalid credentials...
-        </p>
-      );
-
-    if (email === user.email && password === user.password)
-      return (
-        <p className="text-center text-stone-800 text-lg font-semibold animate-pulse">
-          Login was successfull! Redirecting...
-        </p>
-      );
+    if (!email || !password) return "error";
+    if (email !== user.email || password !== user.password) return "error";
+    return "success";
   }
 
   function handleSignIn(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    setSignIn((prev) => !prev);
+
+    const result = mockTest(loginCredentials.email, loginCredentials.password);
+
+    setStatus(result);
+
+    setTimeout(() => {
+      setStatus("idle");
+    }, 3000);
   }
 
   function handleLoginFields(
@@ -92,8 +85,16 @@ export default function Login() {
           >
             Criar conta
           </button>
-          {signIn &&
-            mockTest(loginCredentials.email, loginCredentials.password)}
+          {status === "error" && (
+            <p className="text-center text-red-500 text-lg font-semibold">
+              Invalid credentials...
+            </p>
+          )}
+          {status === "success" && (
+            <p className="text-center text-stone-800 text-lg font-semibold animate-pulse">
+              Login was successfull! Redirecting...
+            </p>
+          )}
         </div>
       </form>
     </div>
