@@ -24,7 +24,18 @@ export default function Login() {
   function handleSignIn(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
+    let authorized = false;
     const result = mockTest(loginCredentials.email, loginCredentials.password);
+
+    if (result === "success") {
+      authorized = true;
+      setStatus(result);
+      setTimeout(() => {
+        setStatus("idle");
+        switchScreen(authorized);
+      }, 3000);
+      return;
+    }
 
     setStatus(result);
 
@@ -80,7 +91,7 @@ export default function Login() {
             Entrar
           </button>
           <button
-            onClick={switchScreen}
+            onClick={() => switchScreen()}
             className="font-semibold text-black rounded-lg border border-zinc-400 h-10 cursor-pointer"
           >
             Criar conta
@@ -91,7 +102,7 @@ export default function Login() {
             </p>
           )}
           {status === "success" && (
-            <p className="text-center text-stone-800 text-lg font-semibold animate-pulse">
+            <p className="text-center text-green-500 text-lg font-semibold animate-pulse">
               Login was successfull! Redirecting...
             </p>
           )}
