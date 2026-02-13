@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FileText, ArrowLeftRight } from "lucide-react";
+import { SignContext } from "../store/sign-context";
 
 export default function Hero() {
-  return (
+  const { action } = useContext(SignContext);
+
+  return action === "login" || action === "register" ? (
     <div className="h-screen w-[50vw] flex items-center justify-center bg-linear-to-tr from-stone-700 to-stone-900">
       <div className="flex flex-col items-center gap-10 text-white">
         <div className="flex flex-row items-center gap-5">
@@ -21,5 +25,5 @@ export default function Hero() {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
