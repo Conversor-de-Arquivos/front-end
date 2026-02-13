@@ -3,7 +3,6 @@ import { SignContext } from "../store/sign-context";
 
 export default function Register() {
   const { switchScreen } = useContext(SignContext);
-
   const [registerCredentials, setRegisterCredentials] = useState<{
     name: string;
     email: string;
@@ -84,7 +83,7 @@ export default function Register() {
           <p className="text-center font-serif font-extralight">
             Já possui uma conta? Faça login clicando{" "}
             <a
-              onClick={switchScreen}
+              onClick={() => switchScreen("login")}
               className="font-extrabold underline"
               href="#"
             >

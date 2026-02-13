@@ -4,7 +4,6 @@ import { SignContext } from "../store/sign-context";
 
 export default function Login() {
   const { switchScreen } = useContext(SignContext);
-
   const [loginCredentials, setLoginCredentials] = useState<{
     email: string;
     password: string;
@@ -12,6 +11,7 @@ export default function Login() {
     email: "",
     password: "",
   });
+
   type LoginStatus = "idle" | "error" | "success";
   const [status, setStatus] = useState<LoginStatus>("idle");
 
@@ -24,15 +24,13 @@ export default function Login() {
   function handleSignIn(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
-    let authorized = false;
     const result = mockTest(loginCredentials.email, loginCredentials.password);
 
     if (result === "success") {
-      authorized = true;
       setStatus(result);
       setTimeout(() => {
         setStatus("idle");
-        switchScreen(authorized);
+        switchScreen("home");
       }, 3000);
       return;
     }
@@ -91,7 +89,7 @@ export default function Login() {
             Entrar
           </button>
           <button
-            onClick={() => switchScreen()}
+            onClick={() => switchScreen("register")}
             className="font-semibold text-black rounded-lg border border-zinc-400 h-10 cursor-pointer"
           >
             Criar conta
