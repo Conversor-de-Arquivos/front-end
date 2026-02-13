@@ -1,8 +1,8 @@
 import { createContext, useState, type ReactNode } from "react";
 
 export const SignContext = createContext<{
-  action: "login" | "register";
-  switchScreen: () => void;
+  action: "login" | "register" | "home";
+  switchScreen: (authorized?: boolean) => void;
 }>({
   action: "login",
   switchScreen: () => {},
@@ -15,10 +15,11 @@ interface SignContextProviderProps {
 export default function SignContextProvider({
   children,
 }: SignContextProviderProps) {
-  const [action, setAction] = useState<"login" | "register">("login");
+  const [action, setAction] = useState<"login" | "register" | "home">("login");
 
-  function switchScreen() {
-    setAction((prev) => (prev === "login" ? "register" : "login"));
+  function switchScreen(authorized?: boolean) {
+    if (authorized) setAction("home");
+    else setAction((prev) => (prev === "login" ? "register" : "login"));
   }
 
   const ctxValue = {
