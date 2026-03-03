@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
+import WorkflowCard from "./ui-built/WorkflowCard";
 
 export default function Dashboard() {
   const [theme, setTheme] = useState("dark");
@@ -17,6 +18,12 @@ export default function Dashboard() {
   function handleSetTheme() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   }
+
+  const mockedSteps = {
+    firstCard: ["PNG to WebP", "Resize 1200px", "Auto-Rename"],
+    secondCard: ["PDF to OCR", "Markdown Export"],
+    thirdCard: ["PPTX to PDF", "Grayscale", "Flatten"],
+  };
 
   return (
     <>
@@ -61,8 +68,8 @@ export default function Dashboard() {
           </div>
         </div>
       </Sidebar>
-      <div className="flex flex-col w-full bg-zinc-100">
-        <div className="flex flex-row justify-between mt-4 mx-6">
+      <div className="flex flex-col w-full ml-[16.666%] bg-zinc-100">
+        <div className="flex flex-row justify-between my-4 mx-6">
           <div>
             {/* TODO: Dynamically display the logged user's name... */}
             <h1 className="text-3xl font-bold">Bem-vindo, User!</h1>
@@ -107,6 +114,38 @@ export default function Dashboard() {
             <button className="font-semibold text-white p-3 bg-stone-950 rounded-lg cursor-pointer hover:bg-stone-800">
               Selecionar Arquivos
             </button>
+          </div>
+        </div>
+        <div className="flex flex-col mt-4">
+          <div className="flex flex-row justify-between mx-[5vw]">
+            <div className="flex flex-row items-center justify-center gap-1">
+              <span>
+                <Zap className="text-yellow-500" fill="true" size={30} />
+              </span>
+              <h2 className="text-xl font-semibold">Seus Workflows</h2>
+            </div>
+            {/* TODO: implement button functionality later... */}
+            <button className="bg-none p-2 font-bold hover:cursor-pointer hover:underline">
+              Criar Novo +
+            </button>
+          </div>
+          {/* TODO: Display workflow cards accordingly to user's later... */}
+          <div className="flex flex-wrap justify-between gap-4 mx-[7vw]">
+            <WorkflowCard
+              uses={142}
+              workflowName="Otimizar imagens acadêmicas"
+              steps={mockedSteps.firstCard}
+            />
+            <WorkflowCard
+              uses={101}
+              workflowName="Extrair texto de PDF"
+              steps={mockedSteps.secondCard}
+            />
+            <WorkflowCard
+              uses={24}
+              workflowName="Preparar slides para impressão"
+              steps={mockedSteps.thirdCard}
+            />
           </div>
         </div>
       </div>
